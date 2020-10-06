@@ -20,6 +20,8 @@ This is a simple guide to publish an [npm](https://npmjs.com) module.
   - [ESLint configuration](#eslint-configuration)
 - [Publishing the module](#publishing-the-module)
   - [Commands to publish](#commands-to-publish)
+- [Common Errors](#common-errors)
+- [Check your module](#check-your-module)
 
 ## Starting
 
@@ -506,4 +508,40 @@ If you don't have a PRO account. you can run the following command to publish it
 
 ```sh
 $ npm publish --access public
+```
+
+## Common errors
+
+[&#8593; Guide](#table-of-content)
+
+Some common errors can be 403, 409
+
+```
+npm ERR! code E403
+npm ERR! 403 403 Forbidden - PUT https://registry.npmjs.org/Wits
+npm ERR! 403 In most cases, you or one of your dependencies are requesting
+npm ERR! 403 a package version that is forbidden by your security policy.
+-------------------------------------
+npm http 409 https://registry.npmjs.org/-/user/org.couchdb.user:...
+npm ERR! Error: conflict Document update conflict.: -/user/org.couchdb.user:...
+```
+
+You can fix those errors with differents solutions but also you can execute this command:
+
+```sh
+$ npm doctor
+```
+
+`npm doctor` runs a series of checks to make sure your npm installation has what it needs to manage your JavaScript packages. In case of any errors, provide a recommendation to resolve the problem.
+
+## Check your module
+
+[&#8593; Guide](#table-of-content)
+
+After publishing your module in npm, check that everything works correctly and in the way it has been configured.
+
+Create a folder on your computer, access it and install your module:
+
+```sh
+$ npm install your-module-name.
 ```
