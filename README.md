@@ -19,6 +19,7 @@ This is a simple guide to publish an [npm](https://npmjs.com) module.
   - [Configure a linter](#configure-a-linter)
   - [ESLint configuration](#eslint-configuration)
 - [Publishing the module](#publishing-the-module)
+  - [Commands to publish](#commands-to-publish)
 
 ## Starting
 
@@ -422,3 +423,87 @@ Now you have to make every change to a .js file run **prettier** and **ESLint**,
 ```
 
 Now Prettier will fix any problems in .json and .md files and Prettier and ESLint will see problems in .js files.
+
+## Publishing the module
+
+[&#8593; Guide](#table-of-content)
+
+Before publishing your module, you must add a `"files"` attribute in your `package.json`.  
+With this attribute you can define which files will be uploaded to **npm**.
+
+You should also be sure to commit all changed files and push them to the Github repository.
+
+Then your `package.json` should look like the following:
+
+```json
+{
+  "name": "publish-npm-module",
+  "version": "1.0.0",
+  "description": "This is a simple guide to publish an [npm](https.npmjs.com) module.",
+  "main": "./dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "module": "dist/index.js",
+  "source": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "prebuild": "npm test",
+    "build": "microbundle",
+    "prepublish": "npm unlink && npm run build"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Ezequiel Miguel Garay",
+    "email": "ezemgaray@gmail.com",
+    "url": "https://github.com/ezemgaray/publish-npm-module"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/preset-env": "^7.11.5",
+    "babel-jest": "^26.5.2",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
+    "jest": "^26.5.2",
+    "lint-staged": "^10.4.0",
+    "microbundle": "^0.12.4",
+    "prettier": "^2.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "files": ["dist" "package.json", "README.md"]
+}
+
+```
+
+### Commands to publish
+
+[&#8593; Guide](#table-of-content)
+
+If you have a PRO account you can execute
+
+```sh
+$ npm publish
+```
+
+This command publishes your module as private.
+
+If you don't have a PRO account. you can run the following command to publish it as public.
+
+```sh
+$ npm publish --access public
+```

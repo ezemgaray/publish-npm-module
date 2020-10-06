@@ -2,7 +2,10 @@
   "name": "publish-npm-module",
   "version": "1.0.0",
   "description": "This is a simple guide to publish an [npm](https.npmjs.com) module.",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "module": "dist/index.js",
+  "source": "src/index.js",
   "scripts": {
     "test": "jest",
     "prebuild": "npm test",
@@ -13,7 +16,7 @@
   "author": {
     "name": "Ezequiel Miguel Garay",
     "email": "ezemgaray@gmail.com",
-    "url": "https://github.com/ezemgaray/gem-css"
+    "url": "https://github.com/ezemgaray/publish-npm-module"
   },
   "license": "MIT",
   "devDependencies": {
@@ -43,5 +46,10 @@
       "prettier --write",
       "git add"
     ]
-  }
+  },
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ]
 }
