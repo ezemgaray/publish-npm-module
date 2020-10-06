@@ -114,4 +114,4 @@ In short, this means that the versioning numbers will be handled as follows:
 - `scripts`: (object) Scripts list. Then you can execute this names in the terminal using `npm run <script>`. Some scripts like "test" run directly with `npm <script>`
 - `keywords`: Keywords referring to the project that can be used by the registry for search results.
 - `author `: Author information which can be a string **"name &lt;youremail@email.com&gt; (url)" ** or an object **{"name": "yout name", "email": "youremail@email.com", "url": "yourUrl"}**
-- `license`: Is the license with which the module is published. the default is **ISC**. In this case it is changed to **MIT**
+- `license`: Is the license with which the module is published. the default is **ISC**. In this case it is changed to **MIT** 
