@@ -14,7 +14,8 @@ This is a simple guide to publish an [npm](https://npmjs.com) module.
   * [Adding a test](#adding-a-test)
   * [Babel config](#babel-config)
   * [Run test](#run-test)
-
+* [Building files for production](#building-files-for-production)
+* [Hooks](#hooks)
 
 ## Starting  
 [&#8593; Guide](#table-of-content)
@@ -256,4 +257,68 @@ Tests:       2 passed, 2 total
 Snapshots:   0 total
 Time:        21.598 s
 Ran all test suites.
+```
+
+## Building files for production  
+[&#8593; Guide](#table-of-content)
+
+With ***microbundle*** you will build the files for production.
+By default, the microbundle generates the files in the root of the project. Therefore, you can define the `dist` folder where the micropackage will place the files. Also you can add this folder in the `.gitignore`.
+
+The package.json should look like this:
+
+
+```json
+{
+  "name": "publish-npm-module",
+  "version": "1.0.0",
+  "description": "This is a simple guide to publish an [npm](https.npmjs.com) module.",
+  "main": "dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "module": "dist/index.mjs",
+  "source": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "microbundle"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Ezequiel Miguel Garay",
+    "email": "ezemgaray@gmail.com",
+    "url": "https://github.com/ezemgaray/gem-css"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/preset-env": "^7.11.5",
+    "babel-jest": "^26.5.2",
+    "jest": "^26.5.2",
+    "microbundle": "^0.12.4"
+  }
+}
+```
+
+Adding `main` with the file path for Node.js (CJS), `umd:main` for the UMD file and `module` for the ESM file. `source` indicates the source file to be used by microbundle
+
+### Building...
+
+```sh
+$ npm run build
+```
+
+
+## Hooks  
+[&#8593; Guide](#table-of-content)
+
+To define **hooks** in our package.json npm offers us to put a script with the prefix ***pre***, this script will run before executing another prefixed script.  
+e.g.: ig we have a script `"build"` we can add `"prebuild"` or `"publish"` - `"prepublish"`
+
+```json
+{
+  "scripts": {
+    "test": "jest",
+    "prebuild": "npm test",
+    "build": "microbundle",
+    "prepublish": "npm run build"
+  }
+}
 ```

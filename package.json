@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "microbundle"
+    "prebuild": "npm test",
+    "build": "microbundle",
+    "prepublish": "npm unlink && npm run build"
   },
   "keywords": [],
   "author": {
