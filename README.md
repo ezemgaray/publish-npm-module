@@ -8,6 +8,12 @@ This is a simple guide to publish an [npm](https://npmjs.com) module.
 * [The project](#the-project)
 * [Manifest - package.json](#manifest)
 * [Code](#code)
+* [Dependencies](#dependencies)
+  * [Installing dependencies](#installing-dependencies)
+  * [Scripts configuration](#scripts-configuration)
+  * [Adding a test](#adding-a-test)
+  * [Babel config](#babel-config)
+  * [Run test](#run-test)
 
 
 ## Starting  
@@ -148,4 +154,106 @@ Your file structure should now be like this:
 ├── LICENSE
 ├── package.json
 └── README.md
+```
+
+## Dependencies  
+[&#8593; Guide](#table-of-content)
+
+There are diferent types of dependencies. (check this simple explanation on [yarnpkg.com - Types of dependencies](https://classic.yarnpkg.com/en/docs/dependency-types/))
+
+***dependencies*** and ***devdependencies*** are the most common.  
+To install...
+
+*dependencies*  
+```sh
+$ npm install module-name
+```
+
+*devdependencies*  
+```sh
+$ npm install -D module-name
+```
+
+Also you can install more than one dependencie at de same time. For that you just have to separate the names with spaces
+
+### Installing dependencies  
+[&#8593; Guide](#table-of-content)
+
+* [Jest](https://jestjs.io/) - Delightful JavaScript Testing Framework with a focus on simplicity.
+* [Microbundle](https://github.com/developit/microbundle) - Makes different versions of the code compatible with CommonJS to use in Node.js, one from UMD to use in a script tag in the browser and one from ECMAScript so that tools like webpack or Parcel can optimize the final code.
+
+Also you need babel-jest to compile javascript modules becose jest doesn`t support it
+
+```sh
+npm install -D jest microbundle babel-jest @babel/preset-env
+```
+
+### Scripts configuration  
+[&#8593; Guide](#table-of-content)
+
+To run the test with **Jest** and build the bundle, go to the `"scripts"` property in `package.json`, change `"test"` and add `"build"`:
+
+```json
+{
+  "scripts": {
+    "test": "jest",
+    "build": "microbundle",
+
+  },
+}
+```
+
+### Adding a test
+[&#8593; Guide](#table-of-content)
+
+To do a test you must create a `/test` forlder with your tests but in this case you can add a test file `src/index.test.js` with the following code:
+
+```javascript
+import hello from ".";
+
+describe("it should say hello", () => {
+  it("should greet 'Jhon Doe'", () => {
+    expect(hello()).toBe("Hello, Jhon Doe");
+  });
+
+  it("should greet 'Daniel'", () => {
+    expect(hello("Daniel")).toBe("Hello, Daniel");
+  });
+});
+
+```
+
+### Babel config
+[&#8593; Guide](#table-of-content)
+
+To run Babel, create a `babel.config.js` in the root of the project, with the following code:
+
+```javascript
+module.exports = {
+  presets: ["@babel/preset-env"]
+};
+```
+
+### Run test
+[&#8593; Guide](#table-of-content)
+
+Tu run ypur test execute the following command:
+
+```sh
+$ npm test
+```
+
+If you get an answer like this, it is because the test was correct.
+
+```
+ PASS  src/index.test.js (6.629 s)
+  it should say hello
+    √ should greet 'Jhon Doe' (2 ms)
+    √ should greet 'Daniel'
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        21.598 s
+Ran all test suites.
 ```
