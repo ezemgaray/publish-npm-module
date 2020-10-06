@@ -2,22 +2,26 @@
 
 This is a simple guide to publish an [npm](https://npmjs.com) module.
 
-# Table of content
+## Table of content
 
-* [Starting](#starting)
-* [The project](#the-project)
-* [Manifest - package.json](#manifest)
-* [Code](#code)
-* [Dependencies](#dependencies)
-  * [Installing dependencies](#installing-dependencies)
-  * [Scripts configuration](#scripts-configuration)
-  * [Adding a test](#adding-a-test)
-  * [Babel config](#babel-config)
-  * [Run test](#run-test)
-* [Building files for production](#building-files-for-production)
-* [Hooks](#hooks)
+- [The project](#the-project)
+- [Manifest - package.json](#manifest)
+- [Code](#code)
+- [Dependencies](#dependencies)
+  - [Installing dependencies](#installing-dependencies)
+  - [Scripts configuration](#scripts-configuration)
+  - [Adding a test](#adding-a-test)
+  - [Babel config](#babel-config)
+  - [Run test](#run-test)
+- [Building files for production](#building-files-for-production)
+- [Hooks](#hooks)
+- [Avoiding committing errors](#avoiding-committing-errors)
+  - [Configure a linter](#configure-a-linter)
+  - [ESLint configuration](#eslint-configuration)
+- [Publishing the module](#publishing-the-module)
 
-## Starting  
+## Starting
+
 [&#8593; Guide](#table-of-content)
 
 First of all, remember to create an account on [npmjs.com](https://npmjs.com) and check that you have **npm** installed.
@@ -40,62 +44,73 @@ If `npm whoami` command does not return your username, execute the following com
 $ npm adduser
 ```
 
-## The project  
+## The project
+
 [&#8593; Guide](#table-of-content)
 
 To start the project, create a repository on [github](https://github.com) and in the project folder execute the following commands.
 
-- Initialize a new  repository  
+- Initialize a new repository
+
 ```sh
 $ git init
 ```
 
-- Create a README  
+- Create a README
+
 ```sh
 $ echo "#my-project-name" > README.md
 ```
 
-- Generate a MIT license with your name  
+- Generate a MIT license with your name
+
 ```sh
 $ npx license MIT -o "YourNameHere" > LICENSE
 ```
 
-- Generate a "***.gitignore***" for **Node.js** and **JavaScript** projects.  
+- Generate a "**_.gitignore_**" for **Node.js** and **JavaScript** projects.
+
 ```sh
 $ npx gitignore node
 ```
 
-- Generate a "***CODE_OF_CONDUCT.md***" with your email following the [Contributor Covenant](https://www.contributor-covenant.org/)  
+- Generate a "**_CODE_OF_CONDUCT.md_**" with your email following the [Contributor Covenant](https://www.contributor-covenant.org/)
+
 ```sh
 $ npx covgen "hello@sergiodxa.com"
 ```
 
-- Initialize a **Node.js** project with a "***package.json***" with all default values  
+- Initialize a **Node.js** project with a "**_package.json_**" with all default values
+
 ```sh
 $ npm init -y
 ```
 
-- Add files to the staging area  
+- Add files to the staging area
+
 ```sh
 $ git add .
 ```
 
-- Create the first commit  
+- Create the first commit
+
 ```sh
 $ git commit -m "Initial commit"
 ```
 
-- Generate the branch `main`, add origin and push  
+- Generate the branch `main`, add origin and push
+
 ```sh
 $ git branch -M main
 $ git remote add origin [your github repository url]
 $ git push -u origin main
 ```
 
-## Manifest  
+## Manifest
+
 [&#8593; Guide](#table-of-content)
 
-The "***package.json***" contains the module information.
+The "**_package.json_**" contains the module information.
 This manifiest could be diferent in your project. Depending of your npm configuration.
 
 ```json
@@ -115,21 +130,22 @@ This manifiest could be diferent in your project. Depending of your npm configur
 
 **Basic Properties**
 
-- `name`: This is the module name. By default it is the folder name. Can include a namespace (your npm username or organization). 
-e.g.: `@ezemgaray/publish-npm-module`
-- `version`: Module version following the semantic versioning system([semver](https://semver.org/)). 
-In short, this means that the versioning numbers will be handled as follows:
+- `name`: This is the module name. By default it is the folder name. Can include a namespace (your npm username or organization).
+  e.g.: `@ezemgaray/publish-npm-module`
+- `version`: Module version following the semantic versioning system([semver](https://semver.org/)).
+  In short, this means that the versioning numbers will be handled as follows:
   - `4`.1.3 - (major) Big changes. Significant changes to the software that may cause errors for the people who use it. The change may include new features/functionalities, bug fixes and/or functionalities improvements.
   - 4.`1`.3 - (minor) Change that adds a new feature to the software or modifies an existing one, but is still compatible with existing code. Also when we mark something as obsolete.
   - 4.1.`3` - (patch) When you fix a bug being the change backward compatible.
 - `description`: Project description. Should be short and concrete.
-- `main`: The main file of your code. By default is "***index.js***". You can change it.
+- `main`: The main file of your code. By default is "**_index.js_**". You can change it.
 - `scripts`: (object) Scripts list. Then you can execute this names in the terminal using `npm run <script>`. Some scripts like "test" run directly with `npm <script>`
 - `keywords`: Keywords referring to the project that can be used by the registry for search results.
 - `author `: Author information which can be a string **"name &lt;youremail@email.com&gt; (url)" ** or an object **{"name": "yout name", "email": "youremail@email.com", "url": "yourUrl"}**
-- `license`: Is the license with which the module is published. the default is **ISC**. In this case it is changed to **MIT** 
+- `license`: Is the license with which the module is published. the default is **ISC**. In this case it is changed to **MIT**
 
-## Code  
+## Code
+
 [&#8593; Guide](#table-of-content)
 
 To do this example, a simple code is implemented creating an index.js file in a new folder 'src'  
@@ -141,7 +157,6 @@ function hello(name = "Jhon Doe") {
 }
 
 export default hello;
-
 ```
 
 Your file structure should now be like this:
@@ -157,31 +172,35 @@ Your file structure should now be like this:
 └── README.md
 ```
 
-## Dependencies  
+## Dependencies
+
 [&#8593; Guide](#table-of-content)
 
 There are diferent types of dependencies. (check this simple explanation on [yarnpkg.com - Types of dependencies](https://classic.yarnpkg.com/en/docs/dependency-types/))
 
-***dependencies*** and ***devdependencies*** are the most common.  
+**_dependencies_** and **_devdependencies_** are the most common.  
 To install...
 
-*dependencies*  
+_dependencies_
+
 ```sh
 $ npm install module-name
 ```
 
-*devdependencies*  
+_devdependencies_
+
 ```sh
 $ npm install -D module-name
 ```
 
 Also you can install more than one dependencie at de same time. For that you just have to separate the names with spaces
 
-### Installing dependencies  
+### Installing dependencies
+
 [&#8593; Guide](#table-of-content)
 
-* [Jest](https://jestjs.io/) - Delightful JavaScript Testing Framework with a focus on simplicity.
-* [Microbundle](https://github.com/developit/microbundle) - Makes different versions of the code compatible with CommonJS to use in Node.js, one from UMD to use in a script tag in the browser and one from ECMAScript so that tools like webpack or Parcel can optimize the final code.
+- [Jest](https://jestjs.io/) - Delightful JavaScript Testing Framework with a focus on simplicity.
+- [Microbundle](https://github.com/developit/microbundle) - Makes different versions of the code compatible with CommonJS to use in Node.js, one from UMD to use in a script tag in the browser and one from ECMAScript so that tools like webpack or Parcel can optimize the final code.
 
 Also you need babel-jest to compile javascript modules becose jest doesn`t support it
 
@@ -189,7 +208,8 @@ Also you need babel-jest to compile javascript modules becose jest doesn`t suppo
 npm install -D jest microbundle babel-jest @babel/preset-env
 ```
 
-### Scripts configuration  
+### Scripts configuration
+
 [&#8593; Guide](#table-of-content)
 
 To run the test with **Jest** and build the bundle, go to the `"scripts"` property in `package.json`, change `"test"` and add `"build"`:
@@ -198,13 +218,13 @@ To run the test with **Jest** and build the bundle, go to the `"scripts"` proper
 {
   "scripts": {
     "test": "jest",
-    "build": "microbundle",
-
-  },
+    "build": "microbundle"
+  }
 }
 ```
 
 ### Adding a test
+
 [&#8593; Guide](#table-of-content)
 
 To do a test you must create a `/test` forlder with your tests but in this case you can add a test file `src/index.test.js` with the following code:
@@ -221,21 +241,22 @@ describe("it should say hello", () => {
     expect(hello("Daniel")).toBe("Hello, Daniel");
   });
 });
-
 ```
 
 ### Babel config
+
 [&#8593; Guide](#table-of-content)
 
 To run Babel, create a `babel.config.js` in the root of the project, with the following code:
 
 ```javascript
 module.exports = {
-  presets: ["@babel/preset-env"]
+  presets: ["@babel/preset-env"],
 };
 ```
 
 ### Run test
+
 [&#8593; Guide](#table-of-content)
 
 Tu run ypur test execute the following command:
@@ -259,14 +280,14 @@ Time:        21.598 s
 Ran all test suites.
 ```
 
-## Building files for production  
+## Building files for production
+
 [&#8593; Guide](#table-of-content)
 
-With ***microbundle*** you will build the files for production.
+With **_microbundle_** you will build the files for production.
 By default, the microbundle generates the files in the root of the project. Therefore, you can define the `dist` folder where the micropackage will place the files. Also you can add this folder in the `.gitignore`.
 
 The package.json should look like this:
-
 
 ```json
 {
@@ -305,11 +326,11 @@ Adding `main` with the file path for Node.js (CJS), `umd:main` for the UMD file 
 $ npm run build
 ```
 
+## Hooks
 
-## Hooks  
 [&#8593; Guide](#table-of-content)
 
-To define **hooks** in our package.json npm offers us to put a script with the prefix ***pre***, this script will run before executing another prefixed script.  
+To define **hooks** in our package.json npm offers us to put a script with the prefix **_pre_**, this script will run before executing another prefixed script.  
 e.g.: ig we have a script `"build"` we can add `"prebuild"` or `"publish"` - `"prepublish"`
 
 ```json
@@ -322,3 +343,82 @@ e.g.: ig we have a script `"build"` we can add `"prebuild"` or `"publish"` - `"p
   }
 }
 ```
+
+## Avoiding committing errors
+
+[&#8593; Guide](#table-of-content)
+
+It's important avoid committing errors.  
+**_husky_** and **_lint-staged_** help us to run a script before committing.
+
+Instlling tools
+
+```sh
+$ npm install -D husky lint-staged
+```
+
+Configure **_Husky_** adding this in the `package.json`
+
+```json
+{
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
+  }
+}
+```
+
+We also installed **_lint-staged_**, this tool allows us to run something only for the updated or added files. We can then use it to use a linter and make sure the code meets certain rules.
+
+### Configure a Linter
+
+[&#8593; Guide](#table-of-content)
+
+To make sure that our code follows certain rules, we are going to use [ESLint](https://eslint.org/) and [Prettier](https://www.npmjs.com/package/eslint-plugin-prettier) to make sure that our code has no errors and is written in the same style.
+
+```sh
+$ npm install -D eslint eslint-plugin-prettier eslint-config-prettier prettier
+```
+
+### ESLint configuration
+
+[&#8593; Guide](#table-of-content)
+
+Add `.eslintrc` file in the root of the project with the following code:
+
+```json
+{
+  "extends": ["prettier"],
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "env": {
+    "node": true,
+    "es6": true
+  }
+}
+```
+
+With this we tell **ESLint** to extend **Prettier**'s configuration, to use it as a Plugin,
+to support ECMAScript 2018 and that the code runs in ES6 or higher environments and Node.js
+
+Now you have to make every change to a .js file run **prettier** and **ESLint**, for that we configure the following in the `package.json`.
+
+```json
+{
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": ["prettier --write", "eslint --fix", "git add"],
+    "*.{json,md}": ["prettier --write", "git add"]
+  }
+}
+```
+
+Now Prettier will fix any problems in .json and .md files and Prettier and ESLint will see problems in .js files.
