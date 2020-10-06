@@ -2,12 +2,16 @@
 
 This is a simple guide to publish an [npm](https://npmjs.com) module.
 
+# Table of content
+
 * [Starting](#starting)
 * [The project](#the-project)
 * [Manifest - package.json](#manifest)
+* [Code](#code)
 
 
-## Starting
+## Starting  
+[&#8593; Guide](#table-of-content)
 
 First of all, remember to create an account on [npmjs.com](https://npmjs.com) and check that you have **npm** installed.
 
@@ -29,7 +33,8 @@ If `npm whoami` command does not return your username, execute the following com
 $ npm adduser
 ```
 
-## The project
+## The project  
+[&#8593; Guide](#table-of-content)
 
 To start the project, create a repository on [github](https://github.com) and in the project folder execute the following commands.
 
@@ -53,7 +58,7 @@ $ npx license MIT -o "YourNameHere" > LICENSE
 $ npx gitignore node
 ```
 
-- Generate a "***CODE_OF_CONDUCT.md***" with oyur email following the [Contributor Covenant](https://www.contributor-covenant.org/)  
+- Generate a "***CODE_OF_CONDUCT.md***" with your email following the [Contributor Covenant](https://www.contributor-covenant.org/)  
 ```sh
 $ npx covgen "hello@sergiodxa.com"
 ```
@@ -80,7 +85,8 @@ $ git remote add origin [your github repository url]
 $ git push -u origin main
 ```
 
-## Manifest
+## Manifest  
+[&#8593; Guide](#table-of-content)
 
 The "***package.json***" contains the module information.
 This manifiest could be diferent in your project. Depending of your npm configuration.
@@ -115,3 +121,31 @@ In short, this means that the versioning numbers will be handled as follows:
 - `keywords`: Keywords referring to the project that can be used by the registry for search results.
 - `author `: Author information which can be a string **"name &lt;youremail@email.com&gt; (url)" ** or an object **{"name": "yout name", "email": "youremail@email.com", "url": "yourUrl"}**
 - `license`: Is the license with which the module is published. the default is **ISC**. In this case it is changed to **MIT** 
+
+## Code  
+[&#8593; Guide](#table-of-content)
+
+To do this example, a simple code is implemented creating an index.js file in a new folder 'src'  
+`src/index.js`
+
+```javascript
+function hello(name = "Jhon Doe") {
+  return `Hello, ${name}`;
+}
+
+export default hello;
+
+```
+
+Your file structure should now be like this:
+
+```
+├── src
+|   └── index.js
+├── LICENSE
+├── .gitignore
+├── CODE_OF_CONDUCT.md
+├── LICENSE
+├── package.json
+└── README.md
+```
