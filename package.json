@@ -1,5 +1,5 @@
 {
-  "name": "publish-npm-module",
+  "name": "@ezemgaray/publish-npm-module",
   "version": "1.0.0",
   "description": "This is a simple guide to publish an [npm](https.npmjs.com) module.",
   "main": "./dist/index.js",

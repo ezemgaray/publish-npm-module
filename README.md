@@ -22,6 +22,7 @@ This is a simple guide to publish an [npm](https://npmjs.com) module.
   - [Commands to publish](#commands-to-publish)
 - [Common Errors](#common-errors)
 - [Check your module](#check-your-module)
+- [Links](#links)
 
 ## Starting
 
@@ -545,3 +546,24 @@ Create a folder on your computer, access it and install your module:
 ```sh
 $ npm install your-module-name.
 ```
+
+## Links
+
+[&#8593; Guide](#table-of-content)
+
+This repository was created by taking information from different websites, forums, repositories, etc.
+
+Especially from
+
+- [https://sergiodxa.com](https://sergiodxa.com/articles/crear-modulo-npm) (Spanish)
+
+and...
+
+- [Types of dependencies yarnpkg.com](https://classic.yarnpkg.com/en/docs/dependency-types/)
+- [npm-version - npmjs.com](https://docs.npmjs.com/cli/version)
+- [Folder Structure Conventions - repository](https://github.com/kriasoft/Folder-Structure-Conventions/blob/master/README.md)
+- [npm-doctor npmjs.com](https://docs.npmjs.com/cli-commands/doctor.html)
+
+## Author
+
+Ezequiel Garay [github](https://github.com/ezemgaray)
