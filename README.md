@@ -443,9 +443,9 @@ Then your `package.json` should look like the following:
   "name": "publish-npm-module",
   "version": "1.0.0",
   "description": "This is a simple guide to publish an [npm](https.npmjs.com) module.",
-  "main": "./dist/index.js",
+  "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
-  "module": "dist/index.js",
+  "module": "dist/index.mjs",
   "source": "src/index.js",
   "scripts": {
     "test": "jest",
@@ -478,19 +478,11 @@ Then your `package.json` should look like the following:
     }
   },
   "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "eslint --fix",
-      "git add"
-    ],
-    "*.{json,md}": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.js": ["prettier --write", "eslint --fix", "git add"],
+    "*.{json,md}": ["prettier --write", "git add"]
   },
-  "files": ["dist" "package.json", "README.md"]
+  "files": ["dist", "index.d.ts", "package.json", "README.md"]
 }
-
 ```
 
 ### Commands to publish
