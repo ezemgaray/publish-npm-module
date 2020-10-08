@@ -72,19 +72,19 @@ $ echo "#my-project-name" > README.md
 $ npx license MIT -o "YourNameHere" > LICENSE
 ```
 
-- Generate a "**_.gitignore_**" for **Node.js** and **JavaScript** projects.
+- Generate a "***.gitignore***" for **Node.js** and **JavaScript** projects.
 
 ```sh
 $ npx gitignore node
 ```
 
-- Generate a "**_CODE_OF_CONDUCT.md_**" with your email following the [Contributor Covenant](https://www.contributor-covenant.org/)
+- Generate a "***CODE_OF_CONDUCT.md***" with your email following the [Contributor Covenant](https://www.contributor-covenant.org/)
 
 ```sh
-$ npx covgen "hello@sergiodxa.com"
+$ npx covgen "email@email.com"
 ```
 
-- Initialize a **Node.js** project with a "**_package.json_**" with all default values
+- Initialize a **Node.js** project with a "***package.json***" with all default values
 
 ```sh
 $ npm init -y
@@ -114,7 +114,7 @@ $ git push -u origin main
 
 [&#8593; Guide](#table-of-content)
 
-The "**_package.json_**" contains the module information.
+The "***package.json***" contains the module information.
 This manifiest could be diferent in your project. Depending of your npm configuration.
 
 ```json
